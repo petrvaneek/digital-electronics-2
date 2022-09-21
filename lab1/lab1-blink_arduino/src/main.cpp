@@ -1,5 +1,5 @@
 
- * 
+ /* 
  * Blink a LED in Arduino-style and use function from the delay library.
  * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
@@ -11,7 +11,8 @@
 
 
 /* Defines -----------------------------------------------------------*/
-#define LED_GREEN PB5   // PB5 is AVR pin where green on-board LED 
+#define LED_GREEN PB5
+#define LED_RED PB0   // PB5 is AVR pin where green on-board LED 
                         // is connected
 #define SHORT_DELAY 250 // Delay in milliseconds
 #ifndef F_CPU
@@ -28,6 +29,7 @@
 // names. We are using Arduino-style just to simplify the first lab.
 #include "Arduino.h"
 #define PB5 13          // In Arduino world, PB5 is called "13"
+#define PB0 8
 // -----
 
 
@@ -43,6 +45,7 @@ int main(void)
 
     // Set pin where on-board LED is connected as output
     pinMode(LED_GREEN, OUTPUT);
+    pinMode(LED_RED,OUTPUT);
 
     // Infinite loop
     while (1)
@@ -57,6 +60,7 @@ int main(void)
         _delay_ms(SHORT_DELAY);
         // Turn ON/OFF on-board LED
         digitalWrite(LED_GREEN, led_value);
+        digitalWrite(LED_RED, led_value);
     }
 
     // Will never reach this
