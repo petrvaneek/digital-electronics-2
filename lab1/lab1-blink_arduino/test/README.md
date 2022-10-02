@@ -36,4 +36,6 @@ int main(void)
 ```
 
 2. Scheme of Morse code application, i.e. connection of AVR device, LED, resistor, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
+![image](https://user-images.githubusercontent.com/99393183/193449660-ba9cbaba-fb84-489e-a252-65cb5c35331d.png)
+
 
