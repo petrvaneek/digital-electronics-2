@@ -41,7 +41,8 @@
  **********************************************************************/
 int main(void)
 {
-    uint8_t led_value = LOW;  // Local variable to keep LED status
+    uint8_t led_value = LOW;
+      // Local variable to keep LED status
 
     // Set pin where on-board LED is connected as output
     pinMode(LED_GREEN, OUTPUT);
@@ -50,6 +51,7 @@ int main(void)
     // Infinite loop
     while (1)
     {
+        
         // Change LED value
         if (led_value == LOW)
             led_value = HIGH;
