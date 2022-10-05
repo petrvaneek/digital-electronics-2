@@ -12,8 +12,7 @@
 
 /* Defines -----------------------------------------------------------*/
 #define LED_GREEN PB5
-#define BUTTON
-#define LED_RED PB0   // PB5 is AVR pin where green on-board LED 
+#define BUTTON PD2 // PB5 is AVR pin where green on-board LED 
                         // is connected
 #define SHORT_DELAY 250 // Delay in milliseconds
 #ifndef F_CPU
@@ -30,7 +29,7 @@
 // names. We are using Arduino-style just to simplify the first lab.
 #include "Arduino.h"
 #define PB5 13   
-#define PD 4      // In Arduino world, PB5 is called "13"
+#define PD2 2      // In Arduino world, PB5 is called "13"
 // -----
 
 
@@ -49,17 +48,18 @@ int main(void)
     // Set pin where on-board LED is connected as output
     GPIO_mode_output(&DDRB, LED_GREEN);
     GPIO_mode_input_pullup(&DDRD, BUTTON);
+ 
     // Infinite loop
     while (1)
     {
-      if (GPIO_read(&PIND, BUTTON) ==0)
-        GPIO_write_low(&PORTB, LED_GREEN);
+      if (GPIO_read(&PIND, 2))
+       { GPIO_write_low(&PORTB, LED_GREEN);
         _delay_ms(250);
         GPIO_write_high(&PORTB, LED_GREEN);
-        _delay_ms(250);
-      else 
-       _delay_ms(250);
-        GPIO_write_low(&PORTB, LED_GREEN);      
+        _delay_ms(250);}
+     //*** else 
+      /// ***************{_delay_ms(250);
+      ///*******  GPIO_write_low(&PORTB, LED_GREEN);     } *****************///
     }
 
     // Will never reach this
