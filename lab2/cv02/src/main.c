@@ -57,9 +57,9 @@ int main(void)
         _delay_ms(250);
         GPIO_write_high(&PORTB, LED_GREEN);
         _delay_ms(250);}
-     //*** else 
-      /// ***************{_delay_ms(250);
-      ///*******  GPIO_write_low(&PORTB, LED_GREEN);     } *****************///
+    else 
+      {_delay_ms(250);
+      GPIO_write_low(&PORTB, LED_GREEN);     } 
     }
 
     // Will never reach this
