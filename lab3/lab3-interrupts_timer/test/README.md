@@ -21,6 +21,7 @@
     * @note  t_OVF = 1/F_CPU * prescaler * 2^n where n = 8, F_CPU = 16 MHz
     */
    // 
+![image](https://user-images.githubusercontent.com/99393183/195977933-97ba8ebc-ddf8-4e5d-a249-e0d4ed74ad67.png)
 
    ```
 
