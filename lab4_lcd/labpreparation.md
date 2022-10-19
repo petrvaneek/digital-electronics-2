@@ -77,3 +77,27 @@
 | 7 | 55 | 0x37 |
 | 8 | 56 | 0x38 |
 | 9 | 57 | 0x39 |
+    // Custom character definition using https://omerk.github.io/lcdchargen/
+    uint8_t customChar[8] = {
+        0b00100,
+        0b00100,
+        0b01110,
+        0b01110,
+        0b00100,
+        0b00100,
+        0b00100,
+        0b11111
+    };
+
+    // Initialize display
+    lcd_init(LCD_DISP_ON);
+
+    lcd_command(1<<LCD_CGRAM);       // Set addressing to CGRAM (Character Generator RAM)
+                                     // ie to individual lines of character patterns
+    for (uint8_t i = 0; i < 8; i++)  // Copy new character patterns line by line to CGRAM
+        lcd_data(customChar[i]);
+    lcd_command(1<<LCD_DDRAM);       // Set addressing back to DDRAM (Display Data RAM)
+                                     // ie to character codes
+
+    // Display symbol with Character code 0
+    lcd_putc(0x00);
