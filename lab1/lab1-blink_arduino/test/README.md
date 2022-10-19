@@ -1,41 +1,24 @@
-# Lab 1: YOUR_FIRSTNAME LASTNAME
+# Lab 3: YOUR_FIRSTNAME LASTNAME
 
-### Morse code
+### Overflow times
 
-1. Listing of C code which repeats one "dot" and one "comma" (BTW, in Morse code it is letter `A`) on a LED. Always use syntax highlighting, meaningful comments, and follow C guidelines:
-
-```c
-int main(void)
-{
-    uint8_t led_value = LOW;
-      // Local variable to keep LED status
-
-    // Set pin where on-board LED is connected as output
-    pinMode(LED_GREEN, OUTPUT);
-
-    // Infinite loop
-    while (1)
-    {
-        digitalWrite(LED_GREEN, led_value);
-  
-        // Pause several milliseconds
-        _delay_ms(SHORT_DELAY);
-        // Change LED value
-        digitalWrite(LED_GREEN, led_value);
-        // Pause several milliseconds
-        _delay_ms(SHORT_DELAY);
-        // Turn ON/OFF on-board LED
-        digitalWrite(LED_GREEN, led_value);
-        _delay_ms(2*SHORT_DELAY);
-        digitalWrite(LED_GREEN, led_value);
-    }
-
-    // Will never reach this
-    return 0;
-}
-```
-
-2. Scheme of Morse code application, i.e. connection of AVR device, LED, resistor, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
-![image](https://user-images.githubusercontent.com/99393183/193449660-ba9cbaba-fb84-489e-a252-65cb5c35331d.png)
+1. Complete table with overflow times.
 
 
+   | **Module** | **Number of bits** | **1** | **8** | **32** | **64** | **128** | **256** | **1024** |
+   | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+   | Timer/Counter0 | 8  | 16u | 128u | -- | 1024u | -- | 4096u | 16384u |
+   | Timer/Counter1 | 16 |  4096u   |   32768u   | -- | 262144u | -- | 1,048576 | 4,194304 |
+   | Timer/Counter2 | 8  |   16u  |   128u   |  512u  | 1024u |  2048u  | 4096u | 16384u |
+
+### Interrupts
+
+2. In `timer.h` header file, define macros also for Timer/Counter2. Listing of part of the header file with settings for Timer/Counter2. Always use syntax highlighting, meaningful comments, and follow C guidelines:
+
+   ```c
+   /**
+    * @name  Definitions for 8-bit Timer/Counter2
+    * @note  t_OVF = 1/F_CPU * prescaler * 2^n where n = 8, F_CPU = 16 MHz
+    */
+   // WRITE YOUR CODE HERE
+   ```
