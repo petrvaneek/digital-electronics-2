@@ -44,16 +44,6 @@
 int main(void)
 {
 
-//{
-    // Initialize display
-    lcd_init(LCD_DISP_ON_CURSOR_BLINK);
-    uint8_t customChar[] = {
-    // addr 0: .....
-    0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000,
-    // addr 1: |....
-    0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000
-    };
-    // Put string(s) on LCD screen
     lcd_gotoxy(6, 1);
    // lcd_puts("LCD Test");
    // lcd_putc('!');
@@ -91,8 +81,6 @@ ISR(TIMER2_OVF_vect)
     static uint8_t seconds= 0;
     static uint8_t minutes = 0;
     static uint8_t hours = 0;
-    static uint8_t symbol = 0;
-    static uint8_t position = 0;
 
     char string[2];             // String for converted numbers by itoa()
 
@@ -106,23 +94,20 @@ ISR(TIMER2_OVF_vect)
           {
             tenths =0;
             seconds+=1;
-            lcd_gotoxy(1+position, 1);
-            lcd_putc(symbol);
+
           }
           lcd_clrscr();
         if (seconds >59)
           {
             seconds=0;
             minutes+=1;
-            lcd_gotoxy(1+position, 1);
-            lcd_putc(symbol);
+
           }
         if (minutes>59)
           {
             minutes=0;
             hours+=1;
-            lcd_gotoxy(1+position, 1);
-            lcd_putc(symbol);
+ 
           }
         
         
