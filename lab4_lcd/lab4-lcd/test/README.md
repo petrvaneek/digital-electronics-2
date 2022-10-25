@@ -12,4 +12,4 @@
 
 2. Draw a schema of the kitchen alarm application that counts down the time with an LCD, one LED and three push buttons: start, +1 minute, -1 minute. Use the +1/-1 minute buttons to increment/decrement the timer value. After pressing the Start button, the countdown starts. The countdown value is shown on the display in the form of mm.ss (minutes.seconds). At the end of the countdown, the LED will start blinking. The image can be drawn on a computer or by hand. Always name all components and their values.
 
-![image](https://user-images.githubusercontent.com/99393183/197411603-de6c1a9d-360d-4cf6-94bf-de802241d485.png)
+![image](https://user-images.githubusercontent.com/99393183/197786951-9a5773db-115b-4610-9fe3-9f5c81d12a86.png)
