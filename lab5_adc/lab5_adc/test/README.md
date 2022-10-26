@@ -5,7 +5,7 @@
 1. Complete table with voltage divider, calculated, and measured ADC values for all five push buttons.
 
    | **Push button** | **PC0[A0] voltage** | **ADC value (calculated)** | **ADC value (measured)** | **ADC value (measured, hex)** | **PC0[A0] voltage measured** |
-   | :-: | :-: | :-: | :-: | :-: |
+   | :-: | :-: | :-: | :-: | :-: |:-: |
    | Right  | 0&nbsp;V | 0   | 0 | 0 |
    | Up     | 0.495&nbsp;V | 101 | 99 | 63 | 5 |
    | Down   | 1.203&nbsp;V | 246 | 257 | 100 | 85 |
