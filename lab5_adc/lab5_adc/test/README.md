@@ -18,6 +18,7 @@
 Consider an application for temperature measurement. Use analog temperature sensor [TC1046](http://ww1.microchip.com/downloads/en/DeviceDoc/21496C.pdf), LCD, and a LED. Every 30 seconds, the temperature is measured and the value is displayed on LCD screen. When the temperature is too high, the LED will turn on.
 
 2. Draw a schematic of temperature meter. The image can be drawn on a computer or by hand. Always name all components and their values.
+![image](https://user-images.githubusercontent.com/99393183/198834058-a24d2b9f-7be6-4d33-b460-9505af83118a.png)
 
    ![your figure]()
 
