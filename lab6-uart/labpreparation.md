@@ -1,3 +1,5 @@
+   ![image](https://user-images.githubusercontent.com/99393183/199064337-585413bc-a01d-42c4-819f-9af855651d2e.png)
+
    | **Char** | **Decimal** | **Hexadecimal** | **Binary** |
    | :-: | :-: | :-: | :-: |
    | `A` | 65 | 0x41 | `0b0100_0001` |
