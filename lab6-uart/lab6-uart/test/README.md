@@ -2,12 +2,6 @@
 
 ### ASCII
 
-      | **Function name** | **Function parameter(s)** | **Description** | **Example** |
-   | :-- | :-- | :-- | :-- |
-   | `uart_init` | `UART_BAUD_SELECT(9600, F_CPU)` | Initialize UART to 8N1 and set baudrate to 9600&nbsp;Bd | `uart_init(UART_BAUD_SELECT(9600, F_CPU));` |
-   | `uart_getc` |  |  |
-   | `uart_putc` |  |  |
-   | `uart_puts` |  |  |
 
 1. Complete the table with selected ASCII codes.
 
@@ -28,10 +22,8 @@
 ### UART communication
 
 2. Draw timing diagram of the output from UART/USART when transmitting three character data `De2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd). The image can be drawn on a computer or by hand. Name all parts timing diagram.
-
-   ![your figure]()
+![image](https://user-images.githubusercontent.com/99393183/200627964-3f763e8d-de2d-48a4-8357-831fb0acabed.png)
 
 3. Draw a flowchart for function `uint8_t get_parity(uint8_t data, uint8_t type)` which calculates a parity bit of input 8-bit `data` according to parameter `type`. The image can be drawn on a computer or by hand. Use clear descriptions of individual algorithm steps.
-
-   ![your figure]()
+![image](https://user-images.githubusercontent.com/99393183/200627274-fb4a913d-2fc1-45ea-a130-e756be86062f.png)
 
