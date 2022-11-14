@@ -1,5 +1,4 @@
-# Lab 7: INSERT_YOUR_FIRSTNAME INSERT_YOUR_LASTNAME
-
+# Lab 7: Petr Vaněk
 ### Arduino Uno pinout
 
 1. In the picture of the Arduino Uno board, mark the pins that can be used for the following functions/operations:
