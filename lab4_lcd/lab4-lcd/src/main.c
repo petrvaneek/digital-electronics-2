@@ -96,7 +96,6 @@ ISR(TIMER2_OVF_vect)
             seconds+=1;
 
           }
-          lcd_clrscr();
         if (seconds >59)
           {
             seconds=0;
