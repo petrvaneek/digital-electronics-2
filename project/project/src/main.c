@@ -21,8 +21,8 @@
 #include <stdlib.h>         // C library. Needed for number conversions
 
 // values for joystick
-uint16_t value_x=0;
-uint16_t value_y=0;
+uint16_t value_x=512;
+uint16_t value_y=512;
 uint16_t value_click;
 
 // values for rotary encoder
@@ -30,11 +30,15 @@ uint8_t rotaryclk = 0;
 uint8_t rotarydata = 0;
 uint8_t rotarypush = 0;
 uint8_t rotarylast = 0;
+uint32_t variablex = 0;
+uint32_t variabley = 0;
+uint8_t variableg = 0;
+uint8_t mux = 0;
 
 // defines for rotary encoder
 #define ROTARYSWITCH PB3
 #define ROTARYDATA PB4
-#define ROTARYCLK PB4
+#define ROTARYCLK PB3
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
@@ -47,18 +51,16 @@ int main(void)
 {
     // Initialize display
     lcd_init(LCD_DISP_ON);
-    lcd_gotoxy(1, 0); lcd_puts("value:");
-    lcd_gotoxy(3, 1); lcd_puts("key:");
+    lcd_gotoxy(1, 0); lcd_puts("X:");
+    lcd_gotoxy(3, 1); lcd_puts("Y:");
     //lcd_gotoxy(8, 0); lcd_puts("a");  // Put ADC value in decimal
     //lcd_gotoxy(13,0); lcd_puts("b");  // Put ADC value in hexadecimal
     //lcd_gotoxy(8, 1); lcd_puts("c");  // Put button name here
 
     // Configure Analog-to-Digital Convertion unit
-    // Select ADC voltage reference to "AVcc with external capacitor at AREF pin"
     ADMUX |= (1<<REFS0);
-    ADMUX &= ~(1<<REFS1);
     // Select input channel ADC0 (voltage divider pin)
-    ADMUX &= ~((1<<MUX3) | (1<<MUX2) | (1<<MUX0));
+    // ADMUX &= ~((1<<MUX3) | (1<<MUX2) | (1<<MUX0));
     // Enable ADC module
     ADCSRA |= (1 << ADEN);
     // Enable conversion complete interrupt
@@ -93,78 +95,73 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    // Start ADC conversion
-    ADCSRA |= (1 << ADSC);
-}
-
-/**********************************************************************
- * Function: ADC complete interrupt
- * Purpose:  Display converted value on LCD screen.
- **********************************************************************/
-ISR(ADC_vect)
-{   static uint8_t no_of_overflows = 0;
+    static uint8_t no_of_overflows = 0;
 
     no_of_overflows++;
     if (no_of_overflows >= 3)
     {
         no_of_overflows = 0;
 
-        uint16_t value;
-        char string[4];  // String for converted numbers by itoa()
-
-        // Read converted value
-        // Note that, register pair ADCH and ADCL can be read as a 16-bit value ADC
-        value = ADC;
-         // Convert "value" to "string" and display it
-        lcd_clrscr;
-        itoa(value,string,10);
-        lcd_gotoxy(8,0);
-        lcd_puts("    ");
-        lcd_gotoxy(8,0);
-        lcd_puts(string);
-
-        itoa(value,string,16);
-        lcd_gotoxy(13,0);
-        lcd_puts("   ");
-        lcd_gotoxy(13,0);
-        lcd_puts(string);
-
-        int voltage = 5*value;
-        itoa(voltage,string,10);
-        lcd_gotoxy(12, 1);
-        lcd_puts("     "); // Clear previous value
-        lcd_gotoxy(12, 1);
-        lcd_puts(string);
-
-        // Button name
-        lcd_gotoxy(8, 1);
-        lcd_puts("      "); // Clear previous value
-        lcd_gotoxy(8, 1);
-        if (value < 10) // Right
-        {
-            lcd_puts("Right");
-        } 
-        else if (value > 90 && value < 110) // Up
-        {
-            lcd_puts("Up");
+        switch (mux) {
+            case 0:
+                 ADMUX &= ~((1<<MUX3) | (1<<MUX2) | (1<<MUX1)| (1<<MUX0));
+                 mux = 1;
+                 break;
+            case 1:
+                 ADMUX &= ~((1<<MUX3) | (1<<MUX2) | (1<<MUX1));
+                 ADMUX |= ~(1<<MUX0);
+                 mux = 0;
+                 break;
+            case 2:
+                 ADMUX &= ~((1<<MUX3) | (1<<MUX2) | (1<<MUX1));
+                 ADMUX |= ~(1<<MUX1);
+                 mux = 0;
+                break;
+                
+        
         }
-        else if (value > 240 && value < 260) // Down
-        {
-            lcd_puts("Down");
-        }
-        else if (value > 400 && value < 516) // Left
-        {
-            lcd_puts("Left");
-        }
-        else if (value > 630 && value < 750) // Select
-        {
-            lcd_puts("Select");
-        }
-        else
-        {
-            lcd_puts("None");
-      }
     }
+    ADCSRA |=(1<<ADSC);
+}
 
+/**********************************************************************
+ * Function: ADC complete interrupt
+ * Purpose:  Display converted value on LCD screen.
+ **********************************************************************/
+ISR(ADC_vect) 
+{   
+    uint16_t value;
+    char string[4];  // String for converted numbers by itoa()
+    // lcd_clrscr;
+    // itoa(variablex, string, 10);
+    // variablex++;
+    // lcd_gotoxy(8,0);
+    // lcd_puts("     ");
+    // lcd_puts(string);
+    // Read converted value
+    // Note that, register pair ADCH and ADCL can be read as a 16-bit value ADC
+    if (mux == 1) {
+        value_x = ADC;
+        lcd_clrscr;
+        itoa(variablex, string, 10);
+        variablex++;
+        lcd_gotoxy(8,0);
+        lcd_puts("     ");
+        lcd_puts(string);
 
+        // itoa(variablex, string, 10);
+        // lcd_gotoxy(8,0);
+        // lcd_puts("     ");
+        // lcd_puts(string);
+     }
+    else if (mux == 0) {
+        value_x =+ 1;
+
+        lcd_clrscr;
+        itoa(variabley, string, 10);
+        variabley++;
+        lcd_gotoxy(8,1);
+        lcd_puts("     ");
+        lcd_puts(string);
+        }
 }
