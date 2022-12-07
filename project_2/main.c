@@ -19,7 +19,6 @@ int main(void)
     TCCR1A = _BV(COM1A1) | _BV(COM1B1) | _BV(WGM11) | _BV(WGM10);
     TCCR1B = _BV(CS11);
     TCCR1A =_BV(COM1A1) | _BV(COM1B1) | _BV(WGM11) | _BV(WGM10);TCCR1A|= (1<<WGM10);
-   uint_8 no_of
     OCR1A = 45;
     OCR1A = 70;
     
