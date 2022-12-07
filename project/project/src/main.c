@@ -20,7 +20,7 @@
 #include <lcd.h>            // Peter Fleury's LCD library
 #include <stdlib.h>         // C library. Needed for number conversions
 #include <uart.h>           // Peter Fleury's UART library
-#include <twi.h>            // I2C/TWI library for AVR-GCC
+// #include <twi.h>            // I2C/TWI library for AVR-GCC
 // values for joystick
 uint16_t value_x =512;
 uint16_t value_y=512;
@@ -59,7 +59,7 @@ int main(void)
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
     lcd_gotoxy(1, 0); lcd_puts("reminder");
     lcd_gotoxy(1, 1); lcd_puts("password:");
-    twi_init();
+   // twi_init();
     //lcd_gotoxy(8, 0); lcd_puts("a");  // Put ADC value in decimal
     //lcd_gotoxy(13,0); lcd_puts("b");  // Put ADC value in hexadecimal
     //lcd_gotoxy(8, 1); lcd_puts("c");  // Put button name here
@@ -224,7 +224,7 @@ ISR(ADC_vect)
         if (value_x>= 500 && value_x <=530 && value_y>= 500 && value_y <=530 ) // Middle
         {   
             lcd_gotoxy(11,1);
-            lcd_puts("PIN");
+            lcd_puts("PIN  ");
             itoa(PINcode,string,10);
             lcd_gotoxy(8,0);
             lcd_puts("    ");
@@ -232,7 +232,7 @@ ISR(ADC_vect)
             lcd_puts(string);
             
         } 
-        else if (value_x>= 800 && value_y <=100) // Up
+        else if (value_y>800 && value_x <530 && value_x > 490) // down
         {
             
             lcd_gotoxy(11,1);
@@ -243,18 +243,18 @@ ISR(ADC_vect)
             lcd_gotoxy(8,0);
             lcd_puts(string);
         }
-        else if (value_x >= 500 && value_x <= 530 && value_y < 800) // Down
+        else if (value_y<100 && value_x >490) // up
         {
             
             lcd_gotoxy(11,1);
-            lcd_puts("job");
+            lcd_puts("job  ");
             itoa(job,string,10);
             lcd_gotoxy(8,0);
             lcd_puts("    ");
             lcd_gotoxy(8,0);
             lcd_puts(string);
         }
-        else if (value_x <200 && value_y > 500 && value_y < 530) // Left
+        else if (value_x<200 & value_y>490 && value_y<530) // Left
         {
             
             itoa(email,string,10);
@@ -265,11 +265,11 @@ ISR(ADC_vect)
             lcd_gotoxy(8,0);
             lcd_puts(string);
         }
-        else if (value_x > 800 && value_y > 480 && value_y <530) // Right
+        else if (value_x>800 && value_y >480 && value_y<530) // Right
         {
             
             lcd_gotoxy(11,1);
-            lcd_puts("ntbk");
+            lcd_puts("ntbk  ");
             itoa(notebook,string,10);
             lcd_gotoxy(8,0);
             lcd_puts("    ");
