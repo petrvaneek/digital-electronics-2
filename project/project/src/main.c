@@ -57,8 +57,8 @@ int main(void)
     // Initialize display
     lcd_init(LCD_DISP_ON);
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
-    lcd_gotoxy(1, 0); lcd_puts("reminder");
-    lcd_gotoxy(1, 1); lcd_puts("password:");
+    lcd_gotoxy(0, 0); lcd_puts("reminder ");
+    lcd_gotoxy(0, 1); lcd_puts("password ");
    // twi_init();
     //lcd_gotoxy(8, 0); lcd_puts("a");  // Put ADC value in decimal
     //lcd_gotoxy(13,0); lcd_puts("b");  // Put ADC value in hexadecimal
@@ -166,15 +166,7 @@ ISR(TIMER1_OVF_vect)
             }
             rotaryclklaststate = rotaryclkk; 
         }
-    // switch (axisforjoystick)
-    // {
-    //     case(0):
-    //         ADMUX = ADMUX & ~(1<<MUX3 | 1<<MUX2| 1<<MUX1| 1<<MUX0);
-    //         axisforjoystick=0;
-    //     case(1):
-    //         ADMUX = ADMUX & ~(1<<MUX3 | 1<<MUX2| 1<<MUX1); ADMUX|= (1<<MUX0);
-    //         axisforjoystick=1;
-    // }  
+
 
 }
 
