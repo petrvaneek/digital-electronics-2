@@ -214,7 +214,8 @@ ISR(ADC_vect)
         lcd_puts("      "); // Clear previous value
         lcd_gotoxy(8, 1);
         if (value_x>= 500 && value_x <=530 && value_y>= 500 && value_y <=530 ) // Middle
-        {   
+        {   lcd_gotoxy(11,1);
+            lcd_puts("      ");
             lcd_gotoxy(11,1);
             lcd_puts("PIN  ");
             itoa(PINcode,string,10);
@@ -226,7 +227,8 @@ ISR(ADC_vect)
         } 
         else if (value_y>800 && value_x <530 && value_x > 490) // down
         {
-            
+            lcd_gotoxy(11,1);
+            lcd_puts("      ");
             lcd_gotoxy(11,1);
             lcd_puts("phone");
             itoa(phone,string,10);
@@ -237,7 +239,8 @@ ISR(ADC_vect)
         }
         else if (value_y<100 && value_x >490) // up
         {
-            
+            lcd_gotoxy(11,1);
+            lcd_puts("      ");
             lcd_gotoxy(11,1);
             lcd_puts("job  ");
             itoa(job,string,10);
@@ -248,10 +251,11 @@ ISR(ADC_vect)
         }
         else if (value_x<200 & value_y>490 && value_y<530) // Left
         {
-            
-            itoa(email,string,10);
+            lcd_gotoxy(11,1);
+            lcd_puts("      ");
             lcd_gotoxy(11,1);
             lcd_puts("email");
+            itoa(email,string,10);
             lcd_gotoxy(8,0);
             lcd_puts("    ");
             lcd_gotoxy(8,0);
@@ -259,7 +263,7 @@ ISR(ADC_vect)
         }
         else if (value_x>800 && value_y >480 && value_y<530) // Right
         {
-            
+            itoa(email,string,10);
             lcd_gotoxy(11,1);
             lcd_puts("ntbk  ");
             itoa(notebook,string,10);
