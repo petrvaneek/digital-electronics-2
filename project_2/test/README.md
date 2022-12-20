@@ -11,8 +11,7 @@ Precise generation of several PWM channels. Application of two (or more) Servo m
 
 Jako platformu využíváme Arduino Uno. Piny 9 a 10 jsou využity jako PWM výstupy pro ovládání servo motorků, piny A0 a A1 jako analogové vstupy pro určení polohy joysticky.  
 
-![your figure](schema.png)
-
+![image](https://user-images.githubusercontent.com/99393183/208788504-52a2e88e-d9c4-4347-8edf-64526b840d83.png)
 ## Software description
 
 [**timer.h**](/include/timer.h) - pro generování interruptů používáme 16ms časovač, definováný v knihovně timer.h
