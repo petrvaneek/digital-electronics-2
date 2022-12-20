@@ -14,9 +14,9 @@ Jako platformu využíváme Arduino Uno. Piny 9 a 10 jsou využity jako PWM výs
 ![image](https://user-images.githubusercontent.com/99393183/208788504-52a2e88e-d9c4-4347-8edf-64526b840d83.png)
 ## Software description
 
-[**timer.h**](https://github.com/petrvaneek/digital-electronics-2/blob/main/project_2/src/main.c) - pro generování interruptů používáme 16ms časovač, definováný v knihovně timer.h
+[**timer.h**](https://github.com/petrvaneek/digital-electronics-2/blob/main/project_2/include/timer.h) - pro generování interruptů používáme 16ms časovač, definováný v knihovně timer.h
 
-[**main.c**](/src/main.c) - hlavní soubor našeho programu
+[**main.c**]([/src/main.c](https://github.com/petrvaneek/digital-electronics-2/blob/main/project_2/src/main.c)) - hlavní soubor našeho programu
 
 ## Video
 
