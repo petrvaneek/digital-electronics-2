@@ -12,6 +12,7 @@
 
 /* Defines -----------------------------------------------------------*/
 #define LED_GREEN PB5   // PB5 is AVR pin where green on-board LED 
+#define LED_RED PB0
                         // is connected
 #define SHORT_DELAY 250 // Delay in milliseconds
 #ifndef F_CPU
@@ -28,6 +29,7 @@
 // names. We are using Arduino-style just to simplify the first lab.
 #include "Arduino.h"
 #define PB5 13          // In Arduino world, PB5 is called "13"
+#define PB0 8
 // -----
 
 
@@ -43,7 +45,7 @@ int main(void)
 
     // Set pin where on-board LED is connected as output
     pinMode(LED_GREEN, OUTPUT);
-
+    pinMode(LED_RED,OUTPUT);
     // Infinite loop
     while (1)
     {
@@ -55,11 +57,13 @@ int main(void)
             led_value = 1;
             // Set pin to HIGH
             digitalWrite(LED_GREEN, HIGH);
+            digitalWrite(LED_RED,HIGH);
         }
         else {
             led_value = 0;
             // Clear pin to LOW
             digitalWrite(LED_GREEN, LOW);
+            digitalWrite(LED_RED, LOW);
         }
     }
 
