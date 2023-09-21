@@ -38,7 +38,7 @@
  * Function: Main function where the program execution begins
  * Purpose:  Toggle one LED and use delay library.
  * Returns:  none
- **********************************************************************/
+ ***********************************************************************/
 int main(void)
 {
     uint8_t led_value = 0;  // Local variable to keep LED status
