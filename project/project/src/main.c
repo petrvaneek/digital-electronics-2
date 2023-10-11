@@ -20,7 +20,11 @@
 #include <lcd.h>            // Peter Fleury's LCD library
 #include <stdlib.h>         // C library. Needed for number conversions
 #include <uart.h>           // Peter Fleury's UART library
+<<<<<<< HEAD
 #include <twi.h>            // I2C/TWI library for AVR-GCC
+=======
+// #include <twi.h>            // I2C/TWI library for AVR-GCC
+>>>>>>> 6a8bcb2bc77d099a24ed111881b3e8d9ca74a2ac
 // values for joystick
 uint16_t value_x =512;
 uint16_t value_y=512;
@@ -33,9 +37,18 @@ uint8_t rotarypushh;
 uint8_t rotaryclklaststate; 
 uint16_t rotary;
 // defines for rotary encoder
+<<<<<<< HEAD
 #define ROTARYSWITCH PD3
 #define ROTARYDATA PD2
 #define ROTARYCLK PC5
+
+// defines for joystick
+#define SWjoystick PC2
+=======
+#define ROTARYSWITCH PB3
+#define ROTARYDATA PB5
+#define ROTARYCLK PB4
+>>>>>>> 6a8bcb2bc77d099a24ed111881b3e8d9ca74a2ac
 
 // defines for joystick
 #define SWjoystick PC2
@@ -57,9 +70,20 @@ int main(void)
     // Initialize display
     lcd_init(LCD_DISP_ON);
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
+<<<<<<< HEAD
     lcd_gotoxy(0, 0); lcd_puts("reminder ");
     lcd_gotoxy(0, 1); lcd_puts("password: ");
     twi_init();
+=======
+<<<<<<< HEAD
+    lcd_gotoxy(1, 0); lcd_puts("reminder");
+    lcd_gotoxy(1, 1); lcd_puts("password:");
+=======
+    lcd_gotoxy(0, 0); lcd_puts("reminder ");
+    lcd_gotoxy(0, 1); lcd_puts("password ");
+>>>>>>> 31175cbb3fb9409b07bb8cbb74b60579ee45f352
+   // twi_init();
+>>>>>>> 6a8bcb2bc77d099a24ed111881b3e8d9ca74a2ac
     //lcd_gotoxy(8, 0); lcd_puts("a");  // Put ADC value in decimal
     //lcd_gotoxy(13,0); lcd_puts("b");  // Put ADC value in hexadecimal
     //lcd_gotoxy(8, 1); lcd_puts("c");  // Put button name here
@@ -110,6 +134,7 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {   
+<<<<<<< HEAD
     char string [4];// Start ADC conversion
     ADCSRA |= (1 << ADSC);
     // rotaryclkk = GPIO_read(&PORTB, ROTARYCLK);
@@ -183,6 +208,79 @@ ISR(TIMER1_OVF_vect)
     // //         ADMUX = ADMUX & ~(1<<MUX3 | 1<<MUX2| 1<<MUX1); ADMUX|= (1<<MUX0);
     // //         axisforjoystick=1;
     // // }  
+=======
+    // Start ADC conversion
+    ADCSRA |= (1 << ADSC);
+    static uint8_t no_of_overflows = 0;
+    no_of_overflows++;
+    rotaryclkk = GPIO_read(&PORTB, ROTARYCLK);
+    rotarydataa = GPIO_read(&PORTB, ROTARYDATA);
+    rotarypushh = GPIO_read(&PORTB, ROTARYSWITCH);
+    if (rotaryclkk != rotaryclklaststate)
+        {
+            if (rotarydataa != rotaryclkk)
+            {
+                if (value_x>= 500 && value_x <=530 && value_y>= 500 && value_y <=530 )
+                    {
+                        PINcode ++;
+                    }
+                else if (value_x>= 800 && value_y <=100)
+                    {
+                        phone++;
+                    }
+                else if (value_x >= 500 && value_x <= 530 && value_y < 800)
+                    {
+                        job++;
+                    }
+                else if (value_x <200 && value_y > 500 && value_y < 530)
+                    {
+                        email++;
+                    }
+                else if (value_x > 800 && value_y > 480 && value_y <530)
+                    {
+                        notebook++;
+                    }
+            }
+            else {
+                if (value_x>= 500 && value_x <=530 && value_y>= 500 && value_y <=530 )
+                    {
+                        PINcode --;
+                    }
+                else if (value_x>= 800 && value_y <=100)
+                    {
+                        phone--;
+                    }
+                else if (value_x >= 500 && value_x <= 530 && value_y < 800)
+                    {
+                        job--;
+                    }
+                else if (value_x <200 && value_y > 500 && value_y < 530)
+                    {
+                        email--;
+                    }
+                else if (value_x > 800 && value_y > 480 && value_y <530)
+                    {
+                        notebook--;
+                    }
+            }
+            rotaryclklaststate = rotaryclkk; 
+        }
+<<<<<<< HEAD
+    // switch (axisforjoystick)
+    // {
+    //     case(0):
+    //         ADMUX = ADMUX & ~(1<<MUX3 | 1<<MUX2| 1<<MUX1| 1<<MUX0);
+    //         axisforjoystick=0;
+    //     case(1):
+    //         ADMUX = ADMUX & ~(1<<MUX3 | 1<<MUX2| 1<<MUX1); ADMUX|= (1<<MUX0);
+    //         axisforjoystick=1;
+    // }  
+=======
+
+>>>>>>> 31175cbb3fb9409b07bb8cbb74b60579ee45f352
+
+}
+>>>>>>> 6a8bcb2bc77d099a24ed111881b3e8d9ca74a2ac
 
 }
 void encoder()
@@ -311,12 +409,24 @@ ISR(ADC_vect)
         lcd_gotoxy(8, 1);
         lcd_puts("      "); // Clear previous value
         lcd_gotoxy(8, 1);
+<<<<<<< HEAD
         if (value_x>= 510 && value_x <=520 && value_y>= 500 && value_y <=520 ) // Middle
         {  lcd_clrscr; 
             lcd_gotoxy(11,1);
             lcd_puts("      ");
             lcd_gotoxy(11,1);
             lcd_puts("PIN");
+=======
+        if (value_x>= 500 && value_x <=530 && value_y>= 500 && value_y <=530 ) // Middle
+<<<<<<< HEAD
+        {   
+=======
+        {   lcd_gotoxy(11,1);
+            lcd_puts("      ");
+>>>>>>> 31175cbb3fb9409b07bb8cbb74b60579ee45f352
+            lcd_gotoxy(11,1);
+            lcd_puts("PIN  ");
+>>>>>>> 6a8bcb2bc77d099a24ed111881b3e8d9ca74a2ac
             itoa(PINcode,string,10);
             lcd_gotoxy(8,0);
             lcd_puts("    ");
@@ -324,11 +434,22 @@ ISR(ADC_vect)
             lcd_puts(string);
             
         } 
+<<<<<<< HEAD
         else if (value_y>= 510 && value_y <=520 && value_x>= 800 && value_x<=1024 ) // Up
         {
             lcd_clrscr;
             lcd_gotoxy(11,1);
             lcd_puts("      ");
+=======
+        else if (value_y>800 && value_x <530 && value_x > 490) // down
+        {
+<<<<<<< HEAD
+            
+=======
+            lcd_gotoxy(11,1);
+            lcd_puts("      ");
+>>>>>>> 31175cbb3fb9409b07bb8cbb74b60579ee45f352
+>>>>>>> 6a8bcb2bc77d099a24ed111881b3e8d9ca74a2ac
             lcd_gotoxy(11,1);
             lcd_puts("phone");
             itoa(phone,string,10);
@@ -337,6 +458,7 @@ ISR(ADC_vect)
             lcd_gotoxy(8,0);
             lcd_puts(string);
         }
+<<<<<<< HEAD
         else if (value_x >= 500 && value_x <= 530 && value_y > 900) // Up
         {
             lcd_clrscr;
@@ -344,12 +466,25 @@ ISR(ADC_vect)
             lcd_puts("      ");
             lcd_gotoxy(11,1);
             lcd_puts("job");
+=======
+        else if (value_y<100 && value_x >490) // up
+        {
+<<<<<<< HEAD
+            
+=======
+            lcd_gotoxy(11,1);
+            lcd_puts("      ");
+>>>>>>> 31175cbb3fb9409b07bb8cbb74b60579ee45f352
+            lcd_gotoxy(11,1);
+            lcd_puts("job  ");
+>>>>>>> 6a8bcb2bc77d099a24ed111881b3e8d9ca74a2ac
             itoa(job,string,10);
             lcd_gotoxy(8,0);
             lcd_puts("    ");
             lcd_gotoxy(8,0);
             lcd_puts(string);
         }
+<<<<<<< HEAD
         else if (value_x >= 500 && value_x <= 530 && value_y < 100) // Down
         {
             lcd_clrscr;
@@ -358,11 +493,28 @@ ISR(ADC_vect)
             lcd_puts("      ");
             lcd_gotoxy(11,1);
             lcd_puts("email");
+=======
+        else if (value_x<200 & value_y>490 && value_y<530) // Left
+        {
+<<<<<<< HEAD
+            
+            itoa(email,string,10);
+            lcd_gotoxy(11,1);
+            lcd_puts("email");
+=======
+            lcd_gotoxy(11,1);
+            lcd_puts("      ");
+            lcd_gotoxy(11,1);
+            lcd_puts("email");
+            itoa(email,string,10);
+>>>>>>> 31175cbb3fb9409b07bb8cbb74b60579ee45f352
+>>>>>>> 6a8bcb2bc77d099a24ed111881b3e8d9ca74a2ac
             lcd_gotoxy(8,0);
             lcd_puts("    ");
             lcd_gotoxy(8,0);
             lcd_puts(string);
         }
+<<<<<<< HEAD
         else if (value_y >= 500 && value_y <= 530 && value_x < 490) // Right
         {
             lcd_clrscr;
@@ -370,6 +522,17 @@ ISR(ADC_vect)
             lcd_puts("      ");
             lcd_gotoxy(11,1);
             lcd_puts("ntbk");
+=======
+        else if (value_x>800 && value_y >480 && value_y<530) // Right
+        {
+<<<<<<< HEAD
+            
+=======
+            itoa(email,string,10);
+>>>>>>> 31175cbb3fb9409b07bb8cbb74b60579ee45f352
+            lcd_gotoxy(11,1);
+            lcd_puts("ntbk  ");
+>>>>>>> 6a8bcb2bc77d099a24ed111881b3e8d9ca74a2ac
             itoa(notebook,string,10);
             lcd_gotoxy(8,0);
             lcd_puts("    ");
@@ -377,8 +540,12 @@ ISR(ADC_vect)
             lcd_puts(string);
         }
         else
+<<<<<<< HEAD
         {   lcd_clrscr;
             lcd_gotoxy(8,0);
+=======
+        {   lcd_gotoxy(8,0);
+>>>>>>> 6a8bcb2bc77d099a24ed111881b3e8d9ca74a2ac
             lcd_puts(" ");
       }
     }

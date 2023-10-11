@@ -772,4 +772,8 @@ void uart1_puts_p(const char *progmem_s)
         uart1_putc(c);
 }/* uart1_puts_p */
 
+<<<<<<< HEAD
 #endif /* if defined( ATMEGA_USART1 ) */
+=======
+#endif /* if defined( ATMEGA_USART1 ) */
+>>>>>>> 6a8bcb2bc77d099a24ed111881b3e8d9ca74a2ac

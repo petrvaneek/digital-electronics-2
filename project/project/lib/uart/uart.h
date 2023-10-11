@@ -203,4 +203,8 @@ extern void uart1_puts_p(const char *s);
 /**@}*/
 
 
+<<<<<<< HEAD
 #endif // UART_H
+=======
+#endif // UART_H
+>>>>>>> 6a8bcb2bc77d099a24ed111881b3e8d9ca74a2ac
