@@ -15,7 +15,7 @@
 
 2. In `timer.h` header file, define macros also for Timer/Counter2. Listing of part of the header file with settings for Timer/Counter2. Always use syntax highlighting, meaningful comments, and follow C guidelines:
 #ifndef TIMER_H
-
+//
 /** @brief Stop timer, prescaler 000 --> STOP */
 #define TIM1_stop()           TCCR1B &= ~((1<<CS12) | (1<<CS11) | (1<<CS10));
 /** @brief Set overflow 4ms, prescaler 001 --> 1 */
@@ -29,7 +29,8 @@
 /** @brief Set overflow 4s, prescaler // 101 --> 1024 */
 #define TIM1_overflow_4s()    TCCR1B &= ~(1<<CS11); TCCR1B |= (1<<CS12) | (1<<CS10);
 
-/** @brief Enable overflow interrupt, 1 --> enable */
+/**
+@brief Enable overflow interrupt, 1 --> enable */
 #define TIM1_overflow_interrupt_enable()  TIMSK1 |= (1<<TOIE1);
 /** @brief Disable overflow interrupt, 0 --> disable */
 #define TIM1_overflow_interrupt_disable() TIMSK1 &= ~(1<<TOIE1);
