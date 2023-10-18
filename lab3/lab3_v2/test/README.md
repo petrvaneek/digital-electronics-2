@@ -14,7 +14,7 @@
 ### Interrupts
 
 2. In `timer.h` header file, define macros also for Timer/Counter2. Listing of part of the header file with settings for Timer/Counter2. Always use syntax highlighting, meaningful comments, and follow C guidelines:
-**//
+`
 int main(void)
 {
     // Set pins where LEDs are connected as output
@@ -40,24 +40,6 @@ int main(void)
 }
 
 
-/* Interrupt service routines ----------------------------------------*/
-/**********************************************************************
- * Function: Timer/Counter1 overflow interrupt
- * Purpose:  Toggle on-board LED.
- **********************************************************************/
-ISR(TIMER0_OVF_vect)
-{   static uint8_t no_of_overflows = 0;
-
-    no_of_overflows++;
-    if (no_of_overflows >= 60)
-    {
-        // Do this every 6 x 16 ms = 100 ms
-        no_of_overflows = 0;
-        PORTB = PORTB ^ (1<<LED_GREEN);
-        
-    }
-    TCNT0 = 50;
-    // Else do nothing and exit the ISR
-    
+he ISR
 }
-//**
+`
