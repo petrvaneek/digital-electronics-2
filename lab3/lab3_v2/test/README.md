@@ -14,7 +14,7 @@
 ### Interrupts
 
 2. In `timer.h` header file, define macros also for Timer/Counter2. Listing of part of the header file with settings for Timer/Counter2. Always use syntax highlighting, meaningful comments, and follow C guidelines:
-```
+```c
 int main(void)
 {
     // Set pins where LEDs are connected as output
