@@ -72,7 +72,7 @@ ISR(TIMER0_OVF_vect)
         PORTB = PORTB ^ (1<<LED_GREEN);
         
     }
-    TCNT0 = 50;
+    TCNT0 = 254;
     // Else do nothing and exit the ISR
     
 }
