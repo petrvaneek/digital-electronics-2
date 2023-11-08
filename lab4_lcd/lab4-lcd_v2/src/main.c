@@ -260,7 +260,7 @@ ISR(TIMER2_OVF_vect)
 
 ISR(TIMER1_OVF_vect)
 {   lcd_gotoxy(11,1);
-    uint8_t running_text[] = "   I like Digital electronics!\n";
+    uint8_t running_text[] = "  I like Digital electronics!\n";
     static uint8_t no_of_overflows = 0;
     static uint8_t text_position = 0;
     no_of_overflows+=1;

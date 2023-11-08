@@ -55,7 +55,11 @@ struct DHT_values_structure {
    uint8_t temp_dec;
    uint8_t checksum;
 } dht12;
-
+struct RTC_values_structure {
+    uint8_t secs;
+    uint8_t mins;
+    uint8_t hours;
+} rtc;
 // Flag for printing new data from sensor
 volatile uint8_t new_sensor_data = 0;
 
@@ -65,6 +69,12 @@ volatile uint8_t new_sensor_data = 0;
 #define SENSOR_HUM_MEM 0
 #define SENSOR_TEMP_MEM 2
 #define SENSOR_CHECKSUM 4
+#define RTC_ADR 0x68
+#define RTC_SEC_MEM 0
+#define RTC_MIN_MEM 1
+#define RTC_HOUR_MEM 2
+
+
 int main(void)
 {
     char string[2];  // String for converting numbers by itoa()
@@ -116,6 +126,16 @@ int main(void)
             itoa(dht12.checksum,string,10);
             uart_puts(string);
             uart_puts(" total\r\n");
+            itoa(rtc.hours,string,10);
+            uart_puts(string);
+            uart_puts(":");
+            itoa(rtc.mins,string,10);
+            uart_puts(string);
+            uart_puts(":");
+            itoa(rtc.secs,string,10);
+            uart_puts(string);
+            uart_puts("time\r\n");
+            
 
             // Do not print it again and wait for the new data
             new_sensor_data = 0;
@@ -124,6 +144,56 @@ int main(void)
 
     // Will never reach this
     return 0;
+}
+void rtc_read_seconds()
+{
+    twi_start();
+    if (twi_write((RTC_ADR << 0) | TWI_WRITE) == 0) {
+        // Set internal memory location
+        twi_write(RTC_SEC_MEM);
+        twi_stop();
+        // Read data from internal memory
+        twi_start();
+        twi_write((RTC_ADR<<1) | TWI_READ);
+        rtc.secs = twi_read(TWI_NACK);
+        new_sensor_data = 1;
+    }
+    twi_stop();
+}
+
+
+void rtc_read_minutes()
+{
+    twi_start();
+    if (twi_write((RTC_ADR ) | TWI_WRITE) == 0) {
+        // Set internal memory location
+        twi_write(RTC_MIN_MEM);
+        twi_stop();
+        // Read data from internal memory
+        twi_start();
+        twi_write((RTC_ADR<<1) | TWI_READ);
+        rtc.mins = twi_read(TWI_NACK);
+        twi_stop();
+        new_sensor_data = 1;
+    }
+    twi_stop();
+}
+
+void rtc_read_hours()
+{
+    twi_start();
+    if (twi_write((RTC_ADR ) | TWI_WRITE) == 0) {
+        // Set internal memory location
+        twi_write(RTC_HOUR_MEM);
+        twi_stop();
+        // Read data from internal memory
+        twi_start();
+        twi_write((RTC_ADR<<1) | TWI_READ);
+        rtc.hours = twi_read(TWI_NACK);
+        twi_stop();
+        new_sensor_data = 1;
+    }
+    twi_stop();
 }
 
 /* Interrupt service routines ----------------------------------------*/
@@ -143,8 +213,11 @@ ISR(TIMER1_OVF_vect)
         dht12.hum_int = twi_read(TWI_ACK);
         dht12.hum_dec = twi_read(TWI_ACK);
         dht12.checksum = twi_read(TWI_NACK);
-
         new_sensor_data = 1;
+        
     }
     twi_stop();
+    rtc_read_seconds();
+    rtc_read_minutes();
+    rtc_read_minutes();
 }
