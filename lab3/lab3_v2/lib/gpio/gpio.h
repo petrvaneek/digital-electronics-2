@@ -85,7 +85,7 @@ uint8_t GPIO_read(volatile uint8_t *reg, uint8_t pin);
 
 
 /* GPIO_toggle */
-
+void GPIO_toggle(volatile uint8_t *reg, uint8_t pin);
 
 /** @} */
 
