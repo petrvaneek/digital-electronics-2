@@ -116,12 +116,18 @@ int main(void)
             uart_puts(string);
             oled_puts(string);
             uart_puts(" °C\r\n");
+            oled_puts(" °C\r\n");
             itoa(dht12.hum_int,string,10);
+            oled_gotoxy(0, 3);
+            oled_puts(string);
+            oled_puts(".");
             uart_puts(string);
             uart_puts(".");
             itoa(dht12.hum_dec,string,10);
+            oled_puts(string);
             uart_puts(string);
             uart_puts(" percent\r\n");
+            oled_puts(" percent\r\n");
             itoa(dht12.checksum,string,10);
             uart_puts(string);
             uart_puts(" total\r\n");
@@ -158,7 +164,7 @@ ISR(TIMER1_OVF_vect)
     }
     twi_stop();
 }
-#include <oled.h>
+
 
 /*int main(void)
 {
