@@ -309,7 +309,7 @@ Put flowcharts of your algorithm(s) and direct links to source files in `src` or
 
 <a name="Conclusion"></a>
 ## Conclusion
-
+1. [Presentation about the project](https://docs.google.com/presentation/d/19mg5YWHkvy8gl7RETonb9SvGQu8la4K4fYGNCFHPtMk/edit?pli=1#slide=id.p)
 Could you write an instruction manual for your application, including photos and a link to a short app video?
 
 <a name="references"></a>
