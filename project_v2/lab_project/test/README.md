@@ -53,23 +53,28 @@ $GPGLL 4913.58989 N 01634.42942 E 093533.00 A A65\r\n
 $GPRMC 093533.00 A 4913.58989 N 01634.42942 E 0.322 21.61 161123   A53\r\n
 ```
 
-![GPS data](images/gps_1.png)
-![GPS data](images/gps_2.png)
-![GPS data](images/gps_3.png)
+![gps_1](https://github.com/petrvaneek/digital-electronics-2/assets/99393183/614dadb3-e2dc-40a2-9304-28a0ec6ddf9e)
+
+![gps_2](https://github.com/petrvaneek/digital-electronics-2/assets/99393183/edbb58b2-0d11-4acd-b8eb-05109badd70d)
+
+![gps_3](https://github.com/petrvaneek/digital-electronics-2/assets/99393183/edc0fa65-2d28-41ee-b12b-0412224d36a2)
+
 
 GPS sensor sends them at a rate of one message per second on a baud rate of 9600
 Our problem was that working with this sensor turned out to be a bit complicated due to the low power of the antenna causing us to receive GPS signal outside of the window or outside 
 
 So we created a simple solution to transmit our measured signal on one Arduino and process the data in the second Arduino 
 
-![Ardzuino as source of signal](images/Arduino_to_Arduino.png)
+![Arduino_to_Arduino](https://github.com/petrvaneek/digital-electronics-2/assets/99393183/c4eacff8-0d6b-4c80-9566-91069f5e739f)
+
 
 The next task was to receive the data coming to UART, select the GPRMC part, and store it as data.
 the GPRMC looks like this: **$GPRMC 093533.00 A 4913.58989 N 01634.42942 E 0.322 21.61 161123   A53\r\n**
 The first field is UTC of position in hhmmss.ss format so in this case we measured at 09:35:33 UTC. Next is position status with only two values (A = data valid, V = data invalid). after that is latitude in format 
 (DDmm.mm) followed by latitude direction (N = North, S = South) as can be expected, the next two fields are longitude (DDDmm.mm) and longitude direction (E = East, W = West). The following fields are Speed over ground in knots than Track made good - degrees True (which means the traveling direction that is independent of the direction in which the device is pointing), then the date (dd/mm/yy), last is Checksum and sentence terminator.
 
-![GPS signal measurment](images/GPS_meas2.png)
+![GPS_meas2](https://github.com/petrvaneek/digital-electronics-2/assets/99393183/ee0cb98e-544a-4477-9ac9-1c633051ad79)
+
 
 From all this data we decided that only Date, time, and position are useful.
 These coordinates from the window we measured in are roughly 50m from our correct location, which can be explained by measurement a short time after the sensor found the GPS signal. 
@@ -96,7 +101,8 @@ So, the DMS format for the longitude is approximately 16° 34' 25.7652'' E.
 <a name="Schematic"></a>
 ## Schematic of our project:
 
-![Schematics](images/Project_bb.png)
+![Project_bb](https://github.com/petrvaneek/digital-electronics-2/assets/99393183/3369fbbf-e71b-4091-8360-6b638de0adcd)
+
 
 
 
@@ -281,16 +287,20 @@ _Underneath is a video with a manual for saving data with CoolTerm_
 
 [![CoolTerm](https://img.youtube.com/vi/RWgyCcnUxPY/hqdefault.jpg)](https://www.youtube.com/embed/RWgyCcnUxPY)
 
-![Data at notepad](images/notepad.png) 
-![Data in excel](images/excel1.png)
+![notepad](https://github.com/petrvaneek/digital-electronics-2/assets/99393183/ced98b3d-8fd0-4905-abfb-2cf846528b95)
+
+
+
 
 Then we added temperature and humidity data from the DH12 Sensor
 
-![Data in excel](images/excel2.png)
+![excel2](https://github.com/petrvaneek/digital-electronics-2/assets/99393183/b76216aa-8182-4a94-aaf2-a9dd741fd481)
+
 
 After that data can be processed
 
-![Data in excel](images/Graph.png)
+![Graph](https://github.com/petrvaneek/digital-electronics-2/assets/99393183/91ca5443-58d1-4e6c-9d24-d3f4ff2ee90c)
+
 
 <a name="Flowcharts"></a>
 ## Flowcharts
