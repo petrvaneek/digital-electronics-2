@@ -307,7 +307,7 @@ After that data can be processed
 1. [Presentation about the project](https://docs.google.com/presentation/d/19mg5YWHkvy8gl7RETonb9SvGQu8la4K4fYGNCFHPtMk/edit?pli=1#slide=id.p)
 <a name="Flowcharts"></a>
 ## Flowcharts
-  +-------------------+
+    +-------------------+
     | Start             |
     +-------------------+
         |
