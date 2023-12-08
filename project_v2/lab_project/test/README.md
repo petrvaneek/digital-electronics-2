@@ -302,101 +302,101 @@ After that data can be processed
 ![Graph](https://github.com/petrvaneek/digital-electronics-2/assets/99393183/91ca5443-58d1-4e6c-9d24-d3f4ff2ee90c)
 
 
-<a name="Flowcharts"></a>
+<a name="Presentation"></a>
 ## Presentation
 1. [Presentation about the project](https://docs.google.com/presentation/d/19mg5YWHkvy8gl7RETonb9SvGQu8la4K4fYGNCFHPtMk/edit?pli=1#slide=id.p)
+<a name="Flowcharts"></a>
 ## Flowcharts
-+-------------------+
-| Start             |
-+-------------------+
-    |
-    v
-+-------------------+
-| Initialize UART   |
-| and OLED          |
-+-------------------+
-    |
-    v
-+-------------------+
-| Initialize Timer  |
-| and TWI           |
-+-------------------+
-    |
-    v
-+-------------------+
-| Set up OLED       |
-| display           |
-+-------------------+
-    |
-    v
-+-------------------+
-|  Main Loop        |
-|-------------------|
-| Receive data from |
-| UART (GPS)        |
-+-------------------+
-    |
-    v
-+-------------------+
-|Store data in bufer|
-+-------------------+
-    |
-    v
-+-------------------+
-| Check for newline |
-| character($)      |
-+-------------------+
-    |
-    v
-+-------------------+
-| Get line that     |
-| starts with"GPRMC"|
-|-------------------|
-| (Ends with\r\n)   |
-+-------------------+
-    |
-    v
-+-------------------+
-| Process GPRMC data|
-|-------------------|
-| Extract time, date|
-| latitude, and     |
-| longitude         |
-+-------------------+
-    |
-    v
-+-------------------+
-| Transmit data to  |
-| UART and OLED     |
-+-------------------+
-    |
-    v
-+-------------------+
-| Check for new data|
-| from temperature  |
-| sensor            |
-+-------------------+
-    |
-    v
-+-------------------+
-| Read sensor data  |
-| from TWI          |
-+-------------------+
-    |
-    v
-+-------------------+
-| Display on OLED   |
-+-------------------+
+  +-------------------+
+    | Start             |
+    +-------------------+
+        |
+        v
+    +-------------------+
+    | Initialize UART   |
+    | and OLED          |
+    +-------------------+
+        |
+        v
+    +-------------------+
+    | Initialize Timer  |
+    | and TWI           |
+    +-------------------+
+        |
+        v
+    +-------------------+
+    | Set up OLED       |
+    | display           |
+    +-------------------+
+        |
+        v
+    +-------------------+
+    |  Main Loop        |
+    |-------------------|
+    | Receive data from |
+    | UART (GPS)        |
+    +-------------------+
+        |
+        v
+    +-------------------+
+    |Store data in bufer|
+    +-------------------+
+        |
+        v
+    +-------------------+
+    | Check for newline |
+    | character($)      |
+    +-------------------+
+        |
+        v
+    +-------------------+
+    | Get line that     |
+    | starts with"GPRMC"|
+    |-------------------|
+    | (Ends with\r\n)   |
+    +-------------------+
+        |
+        v
+    +-------------------+
+    | Process GPRMC data|
+    |-------------------|
+    | Extract time, date|
+    | latitude, and     |
+    | longitude         |
+    +-------------------+
+        |
+        v
+    +-------------------+
+    | Transmit data to  |
+    | UART and OLED     |
+    +-------------------+
+        |
+        v
+    +-------------------+
+    | Check for new data|
+    | from temperature  |
+    | sensor            |
+    +-------------------+
+        |
+        v
+    +-------------------+
+    | Read sensor data  |
+    | from TWI          |
+    +-------------------+
+        |
+        v
+    +-------------------+
+    | Display on OLED   |
+    +-------------------+
 
 
-+-------------------+
-| Timer Interrupt   |
-|-------------------|
-| Read temp sensor  |
-| data              |
-| every 5 seconds   |
-+-------------------+
-Put flowcharts of your algorithm(s) and direct links to source files in `src` or `lib` folders.
+    +-------------------+
+    | Timer Interrupt   |
+    |-------------------|
+    | Read temp sensor  |
+    | data              |
+    | every 5 seconds   |
+    +-------------------+
 
 <a name="Conclusion"></a>
 ## Conclusion
